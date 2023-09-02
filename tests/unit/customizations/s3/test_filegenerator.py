@@ -737,58 +737,59 @@ class S3FileGeneratorTest(BaseAWSCommandParamsTest):
             result_list.append(filename)
 
         s = os.path.sep
-        file_stat1 = FileStat(src=f'{self.bucket}{s}another_directory{s}new_directory{s}text2.txt',
+        file_stat1 = FileStat(src=f'{self.bucket}/another_directory/new_directory/text2.txt',
                               dest=f'another_directory{s}new_directory{s}text2.txt',
-                              compare_key=f'another_directory{s}new_directory{s}text2.txt',
+                              compare_key=f'another_directory/new_directory/text2.txt',
                               size=result_list[0].size,
                               last_update=result_list[0].last_update,
                               src_type='s3',
                               dest_type='local', operation_name='')
-        file_stat2 = FileStat(src=f'{self.bucket}{s}another_directory{s}new_directory{s}',
+        file_stat2 = FileStat(src=f'{self.bucket}/another_directory/new_directory/',
                               dest=f'another_directory{s}new_directory{s}',
-                              compare_key=f'another_directory{s}new_directory{s}',
+                              compare_key=f'another_directory/new_directory/',
                               size=result_list[1].size,
                               last_update=result_list[1].last_update,
                               src_type='s3',
                               dest_type='local', operation_name='')
-        file_stat3 = FileStat(src=f'{self.bucket}{s}another_directory{s}text4.txt',
+        file_stat3 = FileStat(src=f'{self.bucket}/another_directory/text4.txt',
                               dest=f'another_directory{s}text4.txt',
-                              compare_key=f'another_directory{s}text4.txt',
+                              compare_key=f'another_directory/text4.txt',
                               size=result_list[2].size,
                               last_update=result_list[2].last_update,
                               src_type='s3',
                               dest_type='local', operation_name='')
-        file_stat4 = FileStat(src=f'{self.bucket}{s}another_directory{s}',
+        file_stat4 = FileStat(src=f'{self.bucket}/another_directory/',
                               dest=f'another_directory{s}',
-                              compare_key=f'another_directory{s}',
+                              compare_key=f'another_directory/',
                               size=result_list[3].size,
                               last_update=result_list[3].last_update,
                               src_type='s3',
                               dest_type='local', operation_name='')
-        file_stat5 = FileStat(src=f'{self.bucket}{s}third_directory{s}abc{s}text1.txt',
+        file_stat5 = FileStat(src=f'{self.bucket}/third_directory/abc/text1.txt',
                               dest=f'third_directory{s}abc{s}text1.txt',
-                              compare_key=f'third_directory{s}abc{s}text1.txt',
+                              compare_key=f'third_directory/abc/text1.txt',
                               size=result_list[4].size,
                               last_update=result_list[4].last_update,
                               src_type='s3',
                               dest_type='local', operation_name='')
-        file_stat6 = FileStat(src=f'{self.bucket}{s}third_directory{s}abc{s}',
+        file_stat6 = FileStat(src=f'{self.bucket}/third_directory/abc/',
                               dest=f'third_directory{s}abc{s}',
-                              compare_key=f'third_directory{s}abc{s}',
+                              compare_key=f'third_directory/abc/',
                               size=result_list[5].size,
                               last_update=result_list[5].last_update,
                               src_type='s3',
                               dest_type='local', operation_name='')
-        file_stat7 = FileStat(src=f'{self.bucket}{s}third_directory{s}',
+        file_stat7 = FileStat(src=f'{self.bucket}/third_directory/',
                               dest=f'third_directory{s}',
-                              compare_key=f'third_directory{s}',
-                              size=result_list[5].size,
-                              last_update=result_list[5].last_update,
+                              compare_key=f'third_directory/',
+                              size=result_list[6].size,
+                              last_update=result_list[6].last_update,
                               src_type='s3',
                               dest_type='local', operation_name='')
 
         ref_list = [file_stat1, file_stat2, file_stat3, file_stat4, file_stat5, file_stat6, file_stat7]
         for i in range(len(result_list)):
+            print(result_list[i].src, ref_list[i].src)
             compare_files(result_list[i], ref_list[i])
 
 
