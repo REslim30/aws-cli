@@ -265,7 +265,7 @@ class MissingFileSync(BaseSync):
         # If the source is a directory, we don't want to sync it
         # (we only want to sync files). Additional check for '/'
         # as file could be a s3 path also.
-        if src_file.src.endswith(os.path.sep) and src_file.src.endswith('/'):
+        if src_file.src.endswith(os.path.sep) or src_file.src.endswith('/'):
             return False
         LOG.debug("syncing: %s -> %s, file does not exist at destination",
                   src_file.src, src_file.dest)
