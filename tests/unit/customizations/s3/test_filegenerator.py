@@ -496,8 +496,8 @@ class TestListFilesLocally(unittest.TestCase):
         os.mkdir(p(self.directory, 'ABC'))
         os.mkdir(p(self.directory, 'ABC', '234'))
         os.mkdir(p(self.directory, 'ABC', 'abc'))
-        os.mkdir(p(self.directory, 'abc'))
-        open(p(self.directory, 'abc', 'test-123.txt'), 'w').close()
+        os.mkdir(p(self.directory, 'bar'))
+        open(p(self.directory, 'bar', 'test-123.txt'), 'w').close()
         open(p(self.directory, 'ABC', 'test-123.txt'), 'w').close()
         open(p(self.directory, 'ABC', '234', 'test-123.txt'), 'w').close()
 
@@ -512,8 +512,8 @@ class TestListFilesLocally(unittest.TestCase):
             f'ABC{s}abc{s}',
             f'ABC{s}test-123.txt',
             f'ABC{s}',
-            f'abc{s}test-123.txt',
-            f'abc{s}',
+            f'bar{s}test-123.txt',
+            f'bar{s}',
         ]]
         self.assertEqual(values, expected_order)
 
